@@ -2,420 +2,949 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>To my pattu kutty ❤️</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Georgia, 'Times New Roman', serif;
-            background:
-                radial-gradient(circle at top, #ff9a9e 0%, #fad0c4 35%, #a18cd1 100%);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* =========================
-           FLOATING HEARTS
-        ========================= */
-
-        .floating-heart {
-            position: fixed;
-            bottom: -50px;
-            font-size: 25px;
-            pointer-events: none;
-            z-index: 1;
-            animation: floatHeart linear forwards;
-        }
-
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* =========================
-           GENERAL
-        ========================= */
-
-        .page {
-            width: 100%;
-            min-height: 100vh;
-            display: none;
-            position: relative;
-            z-index: 2;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .container {
-            width: 92%;
-            max-width: 850px;
-            margin: auto;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .glass {
-            background: rgba(255,255,255,0.14);
-            border: 1px solid rgba(255,255,255,0.25);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 25px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-
-        h1 {
-            font-size: clamp(38px, 8vw, 70px);
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: clamp(28px, 6vw, 45px);
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-size: 25px;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 19px;
-            line-height: 1.8;
-            margin: 12px 0;
-        }
-
-        .small {
-            font-size: 15px;
-            opacity: 0.85;
-        }
-
-        /* =========================
-           BUTTONS
-        ========================= */
-
-        button {
-            border: none;
-            background: white;
-            color: #d63384;
-            padding: 15px 28px;
-            border-radius: 50px;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        button:hover {
-            transform: scale(1.07);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-        }
-
-        button:active {
-            transform: scale(0.96);
-        }
-
-        .pink-button {
-            background: #ff4d8d;
-            color: white;
-        }
-
-        .purple-button {
-            background: #8e44ad;
-            color: white;
-        }
-
-        /* =========================
-           INTRO
-        ========================= */
-
-        #intro .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .big-heart {
-            font-size: 100px;
-            animation: heartbeat 1.2s infinite;
-        }
-
-        @keyframes heartbeat {
-
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.18);
-            }
-        }
-
-        .typing {
-            min-height: 70px;
-        }
-
-        /* =========================
-           PROGRESS
-        ========================= */
-
-        .progress {
-            width: 100%;
-            height: 12px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            margin: 25px 0;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: white;
-            border-radius: 20px;
-            transition: width 0.5s;
-        }
-
-        /* =========================
-           CODE GAME
-        ========================= */
-
-        .code-input {
-            width: 220px;
-            padding: 15px;
-            text-align: center;
-            font-size: 28px;
-            letter-spacing: 10px;
-            border: none;
-            border-radius: 15px;
-            outline: none;
-            margin: 20px;
-        }
-
-        .message-box {
-            min-height: 50px;
-            margin-top: 15px;
-            font-size: 18px;
-        }
-
-        .success {
-            color: #fff;
-        }
-
-        .wrong {
-            color: #ffe0e0;
-        }
-
-        /* =========================
-           QUIZ
-        ========================= */
-
-        .quiz-question {
-            font-size: 25px;
-            margin: 20px 0;
-        }
-
-        .quiz-option {
-            display: block;
-            width: 90%;
-            max-width: 550px;
-            margin: 12px auto;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .quiz-option:hover {
-            background: white;
-            color: #d63384;
-        }
-
-        /* =========================
-           HEART GAME
-        ========================= */
-
-        #heartGame {
-            position: relative;
-            height: 450px;
-            margin-top: 20px;
-            border-radius: 25px;
-            background: rgba(0,0,0,0.12);
-            overflow: hidden;
-        }
-
-        .game-heart {
-            position: absolute;
-            font-size: 40px;
-            cursor: pointer;
-            user-select: none;
-            animation: pulseHeart 0.8s infinite alternate;
-        }
-
-        @keyframes pulseHeart {
-            from {
-                transform: scale(0.85);
-            }
-
-            to {
-                transform: scale(1.15);
-            }
-        }
-
-        .score {
-            font-size: 25px;
-            margin: 15px;
-            font-weight: bold;
-        }
-
-        /* =========================
-           MEMORY CARDS
-        ========================= */
-
-        .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .memory-card {
-            min-height: 160px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.18);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            cursor: pointer;
-            transition: 0.4s;
-            font-size: 18px;
-        }
-
-        .memory-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.28);
-        }
-
-        /* =========================
-           REASONS
-        ========================= */
-
-        .reason {
-            background: rgba(255,255,255,0.15);
-            padding: 18px;
-            border-radius: 15px;
-            margin: 12px 0;
-            text-align: left;
-            transition: 0.3s;
-        }
-
-        .reason:hover {
-            transform: translateX(8px);
-            background: rgba(255,255,255,0.25);
-        }
-
-        /* =========================
-           FINAL
-        ========================= */
-
-        .final-heart {
-            font-size: 100px;
-            animation: heartbeat 1s infinite;
-        }
-
-        .final-message {
-            font-size: 23px;
-            line-height: 1.9;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* =========================
-           CONFETTI
-        ========================= */
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 20px;
-            top: -30px;
-            z-index: 999;
-            animation: confettiFall 4s linear forwards;
-        }
-
-        @keyframes confettiFall {
-            to {
-                transform: translateY(110vh) rotate(720deg);
-            }
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 40px 0;
-            }
-
-            .glass {
-                padding: 22px 16px;
-            }
-
-            p {
-                font-size: 17px;
-            }
-
-            .memory-grid {
-                grid-template-columns: 1fr;
-            }
-
-            #heartGame {
-                height: 380px;
-            }
-
-            button {
-                font-size: 15px;
-                padding: 13px 22px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>To My Pattu Kutty ❤️</title>
+
+<style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+
+    background:
+        radial-gradient(circle at top,
+        #ff9a9e 0%,
+        #fad0c4 35%,
+        #a18cd1 100%);
+
+    color: white;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.floating-heart {
+
+    position: fixed;
+
+    bottom: -50px;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    animation:
+        floatHeart linear forwards;
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   PAGES
+===================================================== */
+
+.page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: none;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.page.active {
+
+    display: block;
+}
+
+
+.container {
+
+    width: 92%;
+
+    max-width: 850px;
+
+    margin: auto;
+
+    padding: 60px 0;
+
+    text-align: center;
+}
+
+
+.glass {
+
+    background:
+        rgba(255,255,255,0.14);
+
+    border:
+        1px solid rgba(255,255,255,0.25);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+h1 {
+
+    font-size:
+        clamp(38px,8vw,70px);
+
+    margin-bottom: 20px;
+}
+
+
+h2 {
+
+    font-size:
+        clamp(28px,6vw,45px);
+
+    margin-bottom: 20px;
+}
+
+
+h3 {
+
+    font-size: 25px;
+
+    margin-bottom: 15px;
+}
+
+
+p {
+
+    font-size: 19px;
+
+    line-height: 1.8;
+
+    margin: 12px 0;
+}
+
+
+.small {
+
+    font-size: 15px;
+
+    opacity: .85;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button {
+
+    border: none;
+
+    background: white;
+
+    color: #d63384;
+
+    padding:
+        15px 28px;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin: 10px;
+
+    transition:
+        all .25s ease;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.15);
+}
+
+
+button:hover {
+
+    transform:
+        scale(1.07);
+
+    box-shadow:
+        0 12px 25px
+        rgba(0,0,0,.2);
+}
+
+
+button:active {
+
+    transform:
+        scale(.96);
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+#intro .container {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.big-heart {
+
+    font-size: 100px;
+
+    animation:
+        heartbeat 1.2s infinite;
+}
+
+
+@keyframes heartbeat {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.18);
+    }
+}
+
+
+.typing {
+
+    min-height: 70px;
+}
+
+
+/* =====================================================
+   CAKE PAGE
+===================================================== */
+
+.cake-area {
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.10);
+}
+
+
+.cake {
+
+    position: relative;
+
+    width: 280px;
+
+    height: 230px;
+
+    margin:
+        20px auto;
+}
+
+
+.cake-top {
+
+    position: absolute;
+
+    bottom: 70px;
+
+    left: 25px;
+
+    width: 230px;
+
+    height: 75px;
+
+    background:
+        linear-gradient(
+            #ffb6c9,
+            #ff6f9f
+        );
+
+    border-radius:
+        20px 20px 12px 12px;
+
+    box-shadow:
+        0 10px 20px
+        rgba(0,0,0,.2);
+}
+
+
+.cake-middle {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 45px;
+
+    width: 190px;
+
+    height: 65px;
+
+    background:
+        linear-gradient(
+            #fff0f5,
+            #ffb6d2
+        );
+
+    border-radius:
+        10px 10px 20px 20px;
+}
+
+
+.cake-cream {
+
+    position: absolute;
+
+    bottom: 130px;
+
+    left: 30px;
+
+    width: 220px;
+
+    height: 20px;
+
+    background: white;
+
+    border-radius: 50%;
+}
+
+
+.candle {
+
+    position: absolute;
+
+    bottom: 145px;
+
+    width: 12px;
+
+    height: 55px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #ffffff,
+            #ffffff 7px,
+            #ff4d8d 7px,
+            #ff4d8d 14px
+        );
+
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+
+.candle:nth-child(1) {
+
+    left: 70px;
+}
+
+
+.candle:nth-child(2) {
+
+    left: 110px;
+}
+
+
+.candle:nth-child(3) {
+
+    left: 150px;
+}
+
+
+.candle:nth-child(4) {
+
+    left: 190px;
+}
+
+
+.flame {
+
+    position: absolute;
+
+    width: 15px;
+
+    height: 22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 70%,
+            #fff 10%,
+            #ffd166 35%,
+            #ff7b00 70%
+        );
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    top: -24px;
+
+    left: -1px;
+
+    animation:
+        flame 0.6s infinite alternate;
+}
+
+
+@keyframes flame {
+
+    from {
+
+        transform:
+            scale(.9)
+            rotate(-4deg);
+    }
+
+    to {
+
+        transform:
+            scale(1.1)
+            rotate(4deg);
+    }
+}
+
+
+.flame.off {
+
+    display: none;
+}
+
+
+.candle-text {
+
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    opacity: .9;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress {
+
+    width: 100%;
+
+    height: 12px;
+
+    background:
+        rgba(255,255,255,.2);
+
+    border-radius: 20px;
+
+    margin: 25px 0;
+
+    overflow: hidden;
+}
+
+
+.progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: white;
+
+    border-radius: 20px;
+
+    transition:
+        width .5s;
+}
+
+
+/* =====================================================
+   CODE
+===================================================== */
+
+.code-input {
+
+    width: 160px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    font-size: 28px;
+
+    letter-spacing: 10px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    outline: none;
+
+    margin: 20px;
+}
+
+
+.message-box {
+
+    min-height: 50px;
+
+    margin-top: 15px;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz-question {
+
+    font-size: 25px;
+
+    margin: 20px 0;
+}
+
+
+.quiz-option {
+
+    display: block;
+
+    width: 90%;
+
+    max-width: 550px;
+
+    margin: 12px auto;
+
+    background:
+        rgba(255,255,255,.2);
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+}
+
+
+.quiz-option:hover {
+
+    background: white;
+
+    color: #d63384;
+}
+
+
+/* =====================================================
+   HEART GAME
+===================================================== */
+
+#heartGame {
+
+    position: relative;
+
+    height: 450px;
+
+    margin-top: 20px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(0,0,0,.12);
+
+    overflow: hidden;
+}
+
+
+.game-heart {
+
+    position: absolute;
+
+    font-size: 40px;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    animation:
+        pulseHeart .8s infinite alternate;
+}
+
+
+@keyframes pulseHeart {
+
+    from {
+
+        transform:
+            scale(.85);
+    }
+
+    to {
+
+        transform:
+            scale(1.15);
+    }
+}
+
+
+.score {
+
+    font-size: 25px;
+
+    margin: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   MEMORY
+===================================================== */
+
+.memory-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.memory-card {
+
+    min-height: 160px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    transition: .4s;
+
+    font-size: 18px;
+}
+
+
+.memory-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    background:
+        rgba(255,255,255,.28);
+}
+
+
+/* =====================================================
+   REASONS
+===================================================== */
+
+.reason {
+
+    background:
+        rgba(255,255,255,.15);
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    margin: 12px 0;
+
+    text-align: left;
+
+    transition: .3s;
+}
+
+
+.reason:hover {
+
+    transform:
+        translateX(8px);
+
+    background:
+        rgba(255,255,255,.25);
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final-heart {
+
+    font-size: 100px;
+
+    animation:
+        heartbeat 1s infinite;
+}
+
+
+.final-message {
+
+    font-size: 23px;
+
+    line-height: 1.9;
+}
+
+
+.love-letter {
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+
+.signature {
+
+    font-size: 28px;
+
+    margin-top: 30px;
+
+    color: #fff;
+}
+
+
+.hidden {
+
+    display: none;
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+.confetti {
+
+    position: fixed;
+
+    width: 10px;
+
+    height: 20px;
+
+    top: -30px;
+
+    z-index: 999;
+
+    animation:
+        confettiFall 4s linear forwards;
+}
+
+
+@keyframes confettiFall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =====================================================
+   FIREWORK
+===================================================== */
+
+.firework {
+
+    position: fixed;
+
+    font-size: 35px;
+
+    z-index: 999;
+
+    animation:
+        fireworkAnim 2s forwards;
+}
+
+
+@keyframes fireworkAnim {
+
+    0% {
+
+        transform:
+            scale(.2);
+
+        opacity: 0;
+    }
+
+    30% {
+
+        transform:
+            scale(1.5);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            scale(2.5)
+            translateY(-100px);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:600px) {
+
+    .container {
+
+        padding: 40px 0;
+    }
+
+    .glass {
+
+        padding:
+            22px 16px;
+    }
+
+    p {
+
+        font-size: 17px;
+    }
+
+    .memory-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    #heartGame {
+
+        height: 380px;
+    }
+
+    button {
+
+        font-size: 15px;
+
+        padding:
+            13px 22px;
+    }
+
+    .cake {
+
+        transform:
+            scale(.85);
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
@@ -426,312 +955,658 @@
 
 <section id="intro" class="page active">
 
-    <div class="container">
+<div class="container">
 
-        <div class="big-heart">❤️</div>
+<div class="big-heart">
+❤️
+</div>
 
-        <h1>Hey, My Love...</h1>
+<h1>
+Hey, Achuuu...
+</h1>
 
-        <div class="glass">
+<div class="glass">
 
-            <p class="typing" id="introText"></p>
+<p
+class="typing"
+id="introText">
+</p>
 
-            <button onclick="startSurprise()">
-                💕 Start My Surprise
-            </button>
+<button onclick="startBirthday()">
+🎂 Your Birthday Surprise
+</button>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PAGE 2 — UNLOCK MY HEART
+     PAGE 2 — CAKE
+===================================================== -->
+
+<section id="cakePage" class="page">
+
+<div class="container">
+
+<div class="glass">
+
+<h1>
+🎂 Happy Birthday, My Pattu Kutty
+</h1>
+
+<p>
+Today isn't just another day...
+</p>
+
+<p>
+Today is the day the world got
+a little more beautiful because
+<strong>you were born.</strong> ❤️
+</p>
+
+
+<div class="cake-area">
+
+<h2>
+Make a wish, Achuuu... ✨
+</h2>
+
+<p>
+Tap each candle to blow it out. 🕯️
+</p>
+
+
+<div class="cake">
+
+<div class="cake-top"></div>
+
+<div class="cake-middle"></div>
+
+<div class="cake-cream"></div>
+
+
+<div
+class="candle"
+onclick="blowCandle(this)">
+
+<div class="flame"></div>
+
+</div>
+
+
+<div
+class="candle"
+onclick="blowCandle(this)">
+
+<div class="flame"></div>
+
+</div>
+
+
+<div
+class="candle"
+onclick="blowCandle(this)">
+
+<div class="flame"></div>
+
+</div>
+
+
+<div
+class="candle"
+onclick="blowCandle(this)">
+
+<div class="flame"></div>
+
+</div>
+
+</div>
+
+
+<p
+id="candleMessage"
+class="candle-text">
+
+Your wish is waiting... ❤️
+
+</p>
+
+
+<button
+id="cakeContinue"
+class="hidden"
+onclick="afterCake()">
+
+💖 Continue
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 3 — CODE
 ===================================================== -->
 
 <section id="codePage" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="glass">
+<div class="glass">
 
-            <h2>🔐 Unlock My Heart</h2>
+<h2>
+🔐 Unlock My Heart
+</h2>
 
-            <p>
-                Before you continue...
-            </p>
+<p>
+Before you continue...
+</p>
 
-            <p>
-                You need to find the secret 2-digit code. ❤️
-            </p>
+<p>
+There is one little secret waiting for you. ❤️
+</p>
 
-            <p class="small">
-                Hint: How old are you today? 🎂
-            </p>
+<p class="small">
+Hint: How old are you today? 🎂
+</p>
 
-          <input
-    id="codeInput"
-    class="code-input"
-    maxlength="2"
-    type="tel"
-    inputmode="numeric"
-    placeholder="••"
-              >
 
-            <br>
+<input
+id="codeInput"
+class="code-input"
+maxlength="2"
+type="tel"
+inputmode="numeric"
+placeholder="••"
+>
 
-            <button onclick="checkCode()">
-                🔓 Unlock
-            </button>
 
-            <div id="codeMessage" class="message-box"></div>
+<br>
 
-        </div>
 
-    </div>
+<button onclick="checkCode()">
+🔓 Unlock My Heart
+</button>
+
+
+<div
+id="codeMessage"
+class="message-box">
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PAGE 3 — QUIZ
+     PAGE 4 — QUIZ
 ===================================================== -->
 
 <section id="quizPage" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="glass">
+<div class="glass">
 
-            <h2>💕 How Well Do You Know Us?</h2>
+<h2>
+💕 A Little Love Quiz
+</h2>
 
-            <p>
-                Let's see how well you remember our little story. 😏
-            </p>
+<p>
+Let's see how well you know
+the person who loves you the most. 😏❤️
+</p>
 
-            <div class="progress">
-                <div id="quizProgress" class="progress-bar"></div>
-            </div>
 
-            <div id="quizArea"></div>
+<div class="progress">
 
-        </div>
+<div
+id="quizProgress"
+class="progress-bar">
+</div>
 
-    </div>
+</div>
+
+
+<div id="quizArea"></div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PAGE 4 — CATCH HEARTS
+     PAGE 5 — CATCH HEART
 ===================================================== -->
 
 <section id="heartPage" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="glass">
+<div class="glass">
 
-            <h2>❤️ Catch My Heart</h2>
+<h2>
+❤️ Catch My Heart
+</h2>
 
-            <p>
-                Catch 10 hearts to continue!
-            </p>
+<p>
+Catch 10 hearts...
+</p>
 
-            <div class="score">
-                Hearts: <span id="score">0</span> / 10
-            </div>
+<p>
+But remember, you already caught mine a long time ago. ❤️
+</p>
 
-            <div id="heartGame"></div>
 
-            <div id="heartMessage"></div>
+<div class="score">
 
-        </div>
+Hearts:
+<span id="score">0</span>
+/
+10
 
-    </div>
+</div>
+
+
+<div id="heartGame"></div>
+
+
+<div id="heartMessage"></div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PAGE 5 — MEMORIES
+     PAGE 6 — MEMORIES
 ===================================================== -->
 
 <section id="memoryPage" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="glass">
+<div class="glass">
 
-            <h2>🌹 Choose a Door</h2>
+<h2>
+🌹 Our Little Story
+</h2>
 
-            <p>
-                Every part of our story is special.
-            </p>
+<p>
+Choose a door...
+and let's take a little journey through us. ❤️
+</p>
 
-            <div class="memory-grid">
 
-                <div
-                    class="memory-card"
-                    onclick="showMemory('past')">
+<div class="memory-grid">
 
-                    🌹<br>
-                    Our Past
 
-                </div>
+<div
+class="memory-card"
+onclick="showMemory('past')">
 
-                <div
-                    class="memory-card"
-                    onclick="showMemory('present')">
+🌹
 
-                    ❤️<br>
-                    Our Present
+<br><br>
 
-                </div>
+Our Past
 
-                <div
-                    class="memory-card"
-                    onclick="showMemory('future')">
+</div>
 
-                    ✨<br>
-                    Our Future
 
-                </div>
+<div
+class="memory-card"
+onclick="showMemory('present')">
 
-            </div>
+❤️
 
-            <div id="memoryMessage" style="margin-top:30px;"></div>
+<br><br>
 
-            <button
-                id="memoryContinue"
-                class="hidden"
-                onclick="showPage('reasonsPage')">
+Our Present
 
-                💖 Continue
+</div>
 
-            </button>
 
-        </div>
+<div
+class="memory-card"
+onclick="showMemory('future')">
 
-    </div>
+✨
+
+<br><br>
+
+Our Future
+
+</div>
+
+
+</div>
+
+
+<div
+id="memoryMessage"
+style="margin-top:30px;">
+</div>
+
+
+<button
+id="memoryContinue"
+class="hidden"
+onclick="showPage('reasonsPage')">
+
+💖 Continue
+
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PAGE 6 — 25 REASONS
+     PAGE 7 — REASONS
 ===================================================== -->
 
 <section id="reasonsPage" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="glass">
+<div class="glass">
 
-            <h2>💖 25 Reasons why I Love You Bujjuuu</h2>
+<h2>
+💖 25 Reasons Why I Love You Bujjuuu
+</h2>
 
-            <p>
-                I could give you a thousand reasons...
-                but here are 25 for your 25th birthday.
-            </p>
+<p>
+I could give you a thousand reasons...
+but today, here are 25.
+One for every beautiful year of your life. ❤️
+</p>
 
-            <div id="reasons"></div>
 
-            <button onclick="showFinal()">
-                🎁 Open My Final Message
-            </button>
+<div id="reasons"></div>
 
-        </div>
 
-    </div>
+<button onclick="showFinal()">
+
+💌 Read My Heart
+
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =====================================================
-     PAGE 7 — FINAL
+     PAGE 8 — FINAL LOVE LETTER
 ===================================================== -->
 
 <section id="finalPage" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="glass">
+<div class="glass">
 
-            <div class="final-heart">
-                ❤️
-            </div>
 
-            <h1>YOU WON! 🎉</h1>
+<div class="final-heart">
+❤️
+</div>
 
-            <h2>But there was never really a prize...</h2>
 
-            <div class="final-message">
+<h1>
+My Pattu Kutty...
+</h1>
 
-                <p>
-                    Because the truth is...
-                </p>
 
-                <p>
-                    <strong>
-                        YOU ARE MY FAVORITE PART OF EVERY DAY.
-                    </strong>
-                </p>
+<div class="final-message">
 
-                <p>
-                    If I could give you one thing in this world,
-                    I would give you the ability to see yourself
-                    through my eyes.
-                </p>
 
-                <p>
-                    Then you would understand just how
-                    incredibly beautiful and special you are to me.
-                </p>
+<p>
+If you have reached this part,
+there is something I want you to know.
+</p>
 
-                <p>
-                    Thank you for coming into my life.
-                </p>
 
-                <p>
-                    Thank you for every smile,
-                    every laugh,
-                    every memory,
-                    and every moment.
-                </p>
+<div class="love-letter">
 
-                <p>
-                    I hope your 25th year is filled with
-                    happiness, love, success and beautiful memories.
-                </p>
 
-                <p>
-                    And I hope I get to be beside you
-                    for many, many more birthdays. ❤️
-                </p>
+<p>
+You are not just someone I love.
+</p>
 
-                <br>
+<p>
+<strong>
+You are someone who has become
+a beautiful part of who I am.
+</strong>
+</p>
 
-                <h1>
-                    HAPPY 25TH BIRTHDAY 🎂
-                </h1>
 
-                <h2>
-                    I LOVE YOU ❤️
-                </h2>
+<p>
+Some people come into our lives
+and leave memories.
+</p>
 
-                <p>
-                    Forever yours,<br>
-                    <strong>Your One and Only ❤️</strong>
-                </p>
 
-            </div>
+<p>
+But you...
+you became my favorite memories,
+my favorite person,
+and my favorite future.
+❤️
+</p>
 
-        </div>
 
-    </div>
+<p>
+I don't know what every tomorrow
+will look like.
+</p>
+
+
+<p>
+But if I get to choose,
+I want as many tomorrows with you
+as life will give me.
+</p>
+
+
+<p>
+I want to see your smile
+on ordinary mornings.
+</p>
+
+
+<p>
+I want to hear your laugh
+on silly days.
+</p>
+
+
+<p>
+I want to be beside you
+when life is beautiful,
+and hold your hand
+when life gets difficult.
+</p>
+
+
+<p>
+I want more birthdays with you.
+</p>
+
+
+<p>
+More adventures.
+</p>
+
+
+<p>
+More arguments that end
+with us laughing.
+</p>
+
+
+<p>
+More random conversations
+at ridiculous hours.
+</p>
+
+
+<p>
+More pictures.
+</p>
+
+
+<p>
+More memories.
+</p>
+
+
+<p>
+More <strong>US.</strong>
+❤️
+</p>
+
+
+<p>
+You deserve a life filled with
+love, happiness, peace,
+success and everything
+your heart wishes for.
+</p>
+
+
+<p>
+And selfishly...
+</p>
+
+
+<p>
+I hope I get to be there
+to watch you achieve all of it.
+❤️
+</p>
+
+
+<p>
+So today,
+on your beautiful 25th birthday,
+I just want to say...
+</p>
+
+
+<h2>
+Thank you for being you.
+</h2>
+
+
+<p>
+Thank you for entering my life.
+</p>
+
+
+<p>
+Thank you for every smile,
+every laugh,
+every memory,
+every little moment.
+</p>
+
+
+<p>
+And most importantly...
+</p>
+
+
+<h2>
+Thank you for letting me love you.
+❤️
+</h2>
+
+</div>
+
+
+<br>
+
+
+<h1>
+🎂 HAPPY 25TH BIRTHDAY 🎂
+</h1>
+
+
+<h2>
+My Beautiful Achuuu ❤️
+</h2>
+
+
+<p>
+May this year be the beginning
+of the most beautiful chapter
+of your life.
+</p>
+
+
+<p>
+And I hope...
+</p>
+
+
+<h2>
+I'm there for every chapter after this one. ❤️
+</h2>
+
+
+<div class="signature">
+
+Forever yours,<br>
+
+<strong>
+By Love ❤️
+</strong>
+
+</div>
+
+
+<br>
+
+
+<h2>
+I LOVE YOU.
+</h2>
+
+
+<p>
+Today.
+Tomorrow.
+And all the tomorrows after that.
+❤️
+</p>
+
+
+</div>
+
+</div>
 
 </section>
 
@@ -739,26 +1614,28 @@
 
 <script>
 
+
 /* =====================================================
    PERSONAL INFORMATION
-=====================================================
+===================================================== */
 
-   CHANGE THESE!
-*/
+const loverName = "Achuuu";
 
-const loverName = "Achuuuu";
 const yourName = "By Love";
+
 const birthdayAge = 25;
 
 
 /* =====================================================
-   INTRO MESSAGE
+   INTRO
 ===================================================== */
 
 const introMessage =
-    "I made something special for you... " +
-    "It's not just a birthday message. " +
-    "It's a little journey through my heart. ❤️";
+"Hey Achuuu... ❤️ " +
+"I made something special for you. " +
+"Not just a birthday message... " +
+"but a little journey through my heart. " +
+"Take your time and enjoy every little surprise. 💕";
 
 
 let introIndex = 0;
@@ -766,15 +1643,27 @@ let introIndex = 0;
 
 function typeIntro() {
 
-    if (introIndex < introMessage.length) {
+if (
+introIndex <
+introMessage.length
+) {
 
-        document.getElementById("introText").innerHTML +=
-            introMessage.charAt(introIndex);
+document.getElementById(
+"introText"
+).innerHTML +=
+introMessage.charAt(
+introIndex
+);
 
-        introIndex++;
+introIndex++;
 
-        setTimeout(typeIntro, 40);
-    }
+setTimeout(
+typeIntro,
+40
+);
+
+}
+
 }
 
 
@@ -787,472 +1676,793 @@ typeIntro();
 
 function showPage(pageId) {
 
-    document.querySelectorAll(".page")
-        .forEach(page => {
-            page.classList.remove("active");
-        });
+document.querySelectorAll(
+".page"
+).forEach(page => {
 
-    document.getElementById(pageId)
-        .classList.add("active");
+page.classList.remove(
+"active"
+);
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+});
+
+
+document.getElementById(
+pageId
+).classList.add(
+"active"
+);
+
+
+window.scrollTo({
+
+top: 0,
+
+behavior: "smooth"
+
+});
 
 }
 
 
 /* =====================================================
-   START
+   START BIRTHDAY
 ===================================================== */
 
-function startSurprise() {
+function startBirthday() {
 
-    createHearts(15);
+createHearts(20);
 
-    showPage("codePage");
+showPage(
+"cakePage"
+);
 
 }
 
 
 /* =====================================================
-   UNLOCK CODE
+   CAKE
+===================================================== */
+
+let candlesBlown = 0;
+
+
+function blowCandle(candle) {
+
+const flame =
+candle.querySelector(
+".flame"
+);
+
+
+if (
+flame.classList.contains(
+"off"
+)
+) {
+
+return;
+
+}
+
+
+flame.classList.add(
+"off"
+);
+
+
+candlesBlown++;
+
+
+createHearts(3);
+
+
+if (
+candlesBlown === 1
+) {
+
+document.getElementById(
+"candleMessage"
+).innerHTML =
+"One wish for your happiness... ❤️";
+
+}
+
+
+if (
+candlesBlown === 2
+) {
+
+document.getElementById(
+"candleMessage"
+).innerHTML =
+"One wish for your dreams to come true... ✨";
+
+}
+
+
+if (
+candlesBlown === 3
+) {
+
+document.getElementById(
+"candleMessage"
+).innerHTML =
+"One wish for our beautiful memories... 💕";
+
+}
+
+
+if (
+candlesBlown === 4
+) {
+
+document.getElementById(
+"candleMessage"
+).innerHTML =
+"🎉 All candles are out! Your birthday wish is yours now. ❤️";
+
+createConfetti();
+
+createFireworks();
+
+
+document.getElementById(
+"cakeContinue"
+).classList.remove(
+"hidden"
+);
+
+}
+
+}
+
+
+/* =====================================================
+   AFTER CAKE
+===================================================== */
+
+function afterCake() {
+
+createConfetti();
+
+setTimeout(
+function() {
+
+showPage(
+"codePage"
+);
+
+},
+500
+);
+
+}
+
+
+/* =====================================================
+   CODE
 ===================================================== */
 
 function checkCode() {
 
-    const input =
-        document.getElementById("codeInput").value;
-
-    const message =
-        document.getElementById("codeMessage");
-
-
-    if (input === birthdayAge.toString()) {
-
-        message.innerHTML =
-            "🔓 <strong>Unlocked!</strong><br>" +
-            "You found the key to my heart. ❤️";
-
-        message.className = "message-box success";
-
-        createConfetti();
-
-        setTimeout(() => {
-
-            showPage("quizPage");
-
-            startQuiz();
-
-        }, 1800);
+const input =
+document.getElementById(
+"codeInput"
+).value;
 
 
-    } else {
+const message =
+document.getElementById(
+"codeMessage"
+);
 
-        message.innerHTML =
-            "💕 Hmm... that's not it. Try again!";
 
-        message.className = "message-box wrong";
+if (
+input ===
+birthdayAge.toString()
+) {
 
-    }
+message.innerHTML =
+"🔓 <strong>Unlocked!</strong><br>" +
+"You found the key to my heart. ❤️";
+
+
+createConfetti();
+
+
+setTimeout(
+function() {
+
+showPage(
+"quizPage"
+);
+
+startQuiz();
+
+},
+1500
+);
+
+
+} else {
+
+message.innerHTML =
+"💕 Hmm... not quite, my love. Try your age again. 🎂";
+
+}
 
 }
 
 
 /* =====================================================
    QUIZ
-=====================================================
-
-   CHANGE THE QUESTIONS AND ANSWERS HERE.
-*/
+===================================================== */
 
 const questions = [
 
-    {
-        question: "What do I love most about you?",
-        options: [
-            "Your smile ❤️",
-            "Your kindness 💕",
-            "Everything about you 😍",
-            "All of the above ❤️"
-        ],
-        answer: 3
-    },
 
-    {
-        question: "What do I want most for your birthday?",
-        options: [
-            "Money",
-            "A new phone",
-            "For you to be happy ❤️",
-            "A vacation"
-        ],
-        answer: 2
-    },
+{
+question:
+"What do I love most about you?",
 
-    {
-        question: "What are you to me?",
-        options: [
-            "My friend",
-            "My favorite person ❤️",
-            "My teammate",
-            "My neighbor"
-        ],
-        answer: 1
-    },
+options: [
 
-    {
-        question: "How long do I want to keep you in my life?",
-        options: [
-            "One year",
-            "Five years",
-            "Until tomorrow",
-            "Forever ❤️"
-        ],
-        answer: 3
-    },
+"Your smile ❤️",
 
-    {
-        question: "Who is the luckiest person in the world?",
-        options: [
-            "Me ❤️",
-            "You",
-            "Both of us",
-            "Everyone who knows you"
-        ],
-        answer: 0
-    }
+"Your kindness 💕",
+
+"Everything about you 😍",
+
+"All of the above ❤️"
+
+],
+
+answer: 3
+
+},
+
+
+{
+question:
+"What do I want most for your birthday?",
+
+options: [
+
+"Money",
+
+"A new phone",
+
+"For you to be happy ❤️",
+
+"A vacation"
+
+],
+
+answer: 2
+
+},
+
+
+{
+question:
+"What are you to me?",
+
+options: [
+
+"My friend",
+
+"My favorite person ❤️",
+
+"My teammate",
+
+"My neighbor"
+
+],
+
+answer: 1
+
+},
+
+
+{
+question:
+"How long do I want to keep you in my life?",
+
+options: [
+
+"One year",
+
+"Five years",
+
+"Until tomorrow",
+
+"Forever ❤️"
+
+],
+
+answer: 3
+
+},
+
+
+{
+question:
+"Who is the luckiest person in the world?",
+
+options: [
+
+"Me ❤️",
+
+"You",
+
+"Both of us",
+
+"Everyone who knows you"
+
+],
+
+answer: 0
+
+}
 
 ];
 
 
 let currentQuestion = 0;
+
 let quizScore = 0;
 
 
 function startQuiz() {
 
-    currentQuestion = 0;
-    quizScore = 0;
+currentQuestion = 0;
 
-    showQuestion();
+quizScore = 0;
+
+showQuestion();
 
 }
 
 
 function showQuestion() {
 
-    const area =
-        document.getElementById("quizArea");
-
-    const question =
-        questions[currentQuestion];
-
-
-    document.getElementById("quizProgress")
-        .style.width =
-        ((currentQuestion / questions.length) * 100) + "%";
+const area =
+document.getElementById(
+"quizArea"
+);
 
 
-    let html = "";
-
-    html += `
-        <div class="quiz-question">
-            ${question.question}
-        </div>
-    `;
+const question =
+questions[
+currentQuestion
+];
 
 
-    question.options.forEach((option, index) => {
+document.getElementById(
+"quizProgress"
+).style.width =
 
-        html += `
-            <button
-                class="quiz-option"
-                onclick="answerQuiz(${index})">
-
-                ${option}
-
-            </button>
-        `;
-
-    });
+(
+currentQuestion /
+questions.length
+* 100
+) + "%";
 
 
-    area.innerHTML = html;
+let html = "";
+
+
+html += `
+
+<div class="quiz-question">
+
+${question.question}
+
+</div>
+
+`;
+
+
+question.options.forEach(
+(option,index) => {
+
+html += `
+
+<button
+class="quiz-option"
+onclick="answerQuiz(${index})">
+
+${option}
+
+</button>
+
+`;
+
+});
+
+
+area.innerHTML =
+html;
 
 }
 
 
 function answerQuiz(selected) {
 
-    const correct =
-        questions[currentQuestion].answer;
+const correct =
+questions[
+currentQuestion
+].answer;
 
 
-    if (selected === correct) {
+if (
+selected === correct
+) {
 
-        quizScore++;
+quizScore++;
 
-        createHearts(5);
+createHearts(5);
 
-        alert("❤️ Correct!");
+alert(
+"❤️ Correct! You know me too well."
+);
 
+} else {
 
-    } else {
+alert(
+"💕 Nice try! But I still love you."
+);
 
-        alert(
-            "💕 Nice try! But I still love you."
-        );
-
-    }
-
-
-    currentQuestion++;
-
-
-    if (currentQuestion < questions.length) {
-
-        showQuestion();
-
-    } else {
-
-        document.getElementById("quizProgress")
-            .style.width = "100%";
+}
 
 
-        document.getElementById("quizArea")
-            .innerHTML = `
+currentQuestion++;
 
-                <h2>🎉 Quiz Complete!</h2>
 
-                <p>
-                    You got
-                    <strong>
-                        ${quizScore} / ${questions.length}
-                    </strong>
-                    correct!
-                </p>
+if (
+currentQuestion <
+questions.length
+) {
 
-                <p>
-                    But honestly...
-                    you get 100/100 for being you. ❤️
-                </p>
+showQuestion();
 
-                <button onclick="startHeartGame()">
-                    ❤️ Next Game
-                </button>
+} else {
 
-            `;
 
-    }
+document.getElementById(
+"quizProgress"
+).style.width =
+"100%";
+
+
+document.getElementById(
+"quizArea"
+).innerHTML = `
+
+<h2>
+💕 Quiz Complete
+</h2>
+
+<p>
+You got
+<strong>
+${quizScore} /
+${questions.length}
+</strong>
+correct.
+</p>
+
+<p>
+But honestly...
+</p>
+
+<p>
+<strong>
+You get 100/100 just for being you. ❤️
+</strong>
+</p>
+
+<button
+onclick="startHeartGame()">
+
+❤️ Continue Our Little Adventure
+
+</button>
+
+`;
+
+}
 
 }
 
 
 /* =====================================================
-   CATCH THE HEART GAME
+   HEART GAME
 ===================================================== */
 
 let heartScore = 0;
+
 let heartTimer;
 
 
 function startHeartGame() {
 
-    showPage("heartPage");
+showPage(
+"heartPage"
+);
 
-    heartScore = 0;
 
-    document.getElementById("score")
-        .innerText = "0";
+heartScore = 0;
 
-    document.getElementById("heartMessage")
-        .innerHTML = "";
 
-    startHeart();
+document.getElementById(
+"score"
+).innerText =
+"0";
+
+
+document.getElementById(
+"heartMessage"
+).innerHTML =
+"";
+
+
+startHeart();
 
 }
 
 
 function startHeart() {
 
-    const game =
-        document.getElementById("heartGame");
+const game =
+document.getElementById(
+"heartGame"
+);
 
 
-    game.innerHTML = "";
+game.innerHTML = "";
 
 
-    const heart =
-        document.createElement("div");
-
-    heart.className = "game-heart";
-
-    heart.innerHTML = "❤️";
+const heart =
+document.createElement(
+"div"
+);
 
 
-    const maxX =
-        game.clientWidth - 60;
-
-    const maxY =
-        game.clientHeight - 60;
+heart.className =
+"game-heart";
 
 
-    heart.style.left =
-        Math.random() * maxX + "px";
-
-    heart.style.top =
-        Math.random() * maxY + "px";
+heart.innerHTML =
+"❤️";
 
 
-    heart.onclick = function() {
-
-        heartScore++;
-
-        document.getElementById("score")
-            .innerText = heartScore;
+const maxX =
+game.clientWidth -
+60;
 
 
-        heart.remove();
+const maxY =
+game.clientHeight -
+60;
 
 
-        createHearts(2);
+heart.style.left =
+Math.random() *
+maxX + "px";
 
 
-        if (heartScore >= 10) {
-
-            clearTimeout(heartTimer);
-
-            game.innerHTML = "";
-
-            document.getElementById("heartMessage")
-                .innerHTML = `
-
-                    <h2>💖 You caught my heart!</h2>
-
-                    <p>
-                        Actually...
-                        you already had it. ❤️
-                    </p>
-
-                    <button onclick="showPage('memoryPage')">
-                        🌹 Continue
-                    </button>
-
-                `;
-
-            createConfetti();
-
-        } else {
-
-            startHeart();
-
-        }
-
-    };
+heart.style.top =
+Math.random() *
+maxY + "px";
 
 
-    game.appendChild(heart);
+heart.onclick =
+function() {
 
 
-    heartTimer = setTimeout(() => {
+heartScore++;
 
-        if (game.contains(heart)) {
 
-            heart.remove();
+document.getElementById(
+"score"
+).innerText =
+heartScore;
 
-            startHeart();
 
-        }
+heart.remove();
 
-    }, 1500);
+
+createHearts(2);
+
+
+if (
+heartScore >= 10
+) {
+
+
+clearTimeout(
+heartTimer
+);
+
+
+game.innerHTML = "";
+
+
+document.getElementById(
+"heartMessage"
+).innerHTML = `
+
+<h2>
+💖 You found my heart!
+</h2>
+
+<p>
+Although...
+</p>
+
+<p>
+<strong>
+You already had it. ❤️
+</strong>
+</p>
+
+<button
+onclick="showPage('memoryPage')">
+
+🌹 Continue
+
+</button>
+
+`;
+
+
+createConfetti();
+
+
+} else {
+
+startHeart();
+
+}
+
+};
+
+
+game.appendChild(
+heart
+);
+
+
+heartTimer =
+setTimeout(
+function() {
+
+if (
+game.contains(heart)
+) {
+
+heart.remove();
+
+startHeart();
+
+}
+
+},
+1500
+);
 
 }
 
 
 /* =====================================================
-   MEMORY DOORS
+   MEMORY
 ===================================================== */
-
-let memoryChosen = false;
-
 
 function showMemory(type) {
 
-    const message =
-        document.getElementById("memoryMessage");
+const message =
+document.getElementById(
+"memoryMessage"
+);
 
 
-    memoryChosen = true;
+if (
+type === "past"
+) {
+
+message.innerHTML = `
+
+<h3>
+🌹 Our Past
+</h3>
+
+<p>
+Every memory we've created together
+is something I would never trade
+for anything in the world.
+</p>
+
+<p>
+The little moments,
+the silly moments,
+the beautiful moments...
+they all became pieces
+of my favorite story.
+</p>
+
+`;
+
+}
 
 
-    if (type === "past") {
+if (
+type === "present"
+) {
 
-        message.innerHTML = `
+message.innerHTML = `
 
-            <h3>🌹 Our Past</h3>
+<h3>
+❤️ Our Present
+</h3>
 
-            <p>
-                Every memory we've created together
-                is something I would never trade for
-                anything in the world.
-            </p>
+<p>
+Right now,
+in this very moment,
+I'm just grateful that
+you're in my life.
+</p>
 
-            <p>
-                From the smallest moments to the biggest
-                adventures, you've made my life more beautiful.
-            </p>
+<p>
+You make ordinary days
+feel special.
+</p>
 
-        `;
+`;
 
-    }
-
-
-    if (type === "present") {
-
-        message.innerHTML = `
-
-            <h3>❤️ Our Present</h3>
-
-            <p>
-                Right now, this moment,
-                I'm just grateful that you're in my life.
-            </p>
-
-            <p>
-                You make today worth celebrating.
-                And I hope you know how loved you are.
-            </p>
-
-        `;
-
-    }
+}
 
 
-    if (type === "future") {
+if (
+type === "future"
+) {
 
-        message.innerHTML = `
+message.innerHTML = `
 
-            <h3>✨ Our Future</h3>
+<h3>
+✨ Our Future
+</h3>
 
-            <p>
-                I don't know exactly what the future holds...
-            </p>
+<p>
+I don't know exactly
+what the future holds...
+</p>
 
-            <p>
-                But I know one thing:
-                I want more laughs, more adventures,
-                more memories and more birthdays with you. ❤️
-            </p>
+<p>
+But I know what I hope for.
+</p>
 
-        `;
+<p>
+More laughter.
+More adventures.
+More memories.
+More birthdays.
+More love.
+More us. ❤️
+</p>
 
-    }
+`;
 
 
-    document.getElementById("memoryContinue")
-        .classList.remove("hidden");
+}
+
+
+document.getElementById(
+"memoryContinue"
+).classList.remove(
+"hidden"
+);
 
 }
 
@@ -1263,89 +2473,111 @@ function showMemory(type) {
 
 const reasons = [
 
-    "Your smile makes my world brighter. ❤️",
 
-    "Your laugh is my favorite sound.",
+"Your smile makes my world brighter. ❤️",
 
-    "You make ordinary days feel magical.",
+"Your laugh is my favorite sound.",
 
-    "Your heart is beautiful and kind.",
+"You make ordinary days feel magical.",
 
-    "You make me feel safe and loved.",
+"Your heart is beautiful and kind.",
 
-    "You are beautiful inside and out.",
+"You make me feel safe and loved.",
 
-    "You make difficult days easier.",
+"You are beautiful inside and out.",
 
-    "You are my favorite person.",
+"You make difficult days easier.",
 
-    "You inspire me to become better.",
+"You are my favorite person.",
 
-    "You are more precious than words can describe.",
+"You inspire me to become better.",
 
-    "Your love makes my life beautiful.",
+"You are more precious than words can describe.",
 
-    "You make my dreams feel possible.",
+"Your love makes my life beautiful.",
 
-    "You are my calm during every storm.",
+"You make my dreams feel possible.",
 
-    "You make every moment special.",
+"You are my calm during every storm.",
 
-    "Your kindness makes you even more beautiful.",
+"You make every moment special.",
 
-    "You bring so much happiness into my life.",
+"Your kindness makes you even more beautiful.",
 
-    "Your love is my greatest treasure.",
+"You bring so much happiness into my life.",
 
-    "Being with you feels like coming home.",
+"Your love is my greatest treasure.",
 
-    "You will always be one of my favorite people.",
+"Being with you feels like coming home.",
 
-    "You are the reason behind so many smiles.",
+"You will always be one of my favorite people.",
 
-    "You bring love, peace and light into my life.",
+"You are the reason behind so many smiles.",
 
-    "You are gorgeous, smart and unforgettable.",
+"You bring love, peace and light into my life.",
 
-    "You make my future feel beautiful.",
+"You are gorgeous, smart and unforgettable.",
 
-    "You are my sweetest blessing.",
+"You make my future feel beautiful.",
 
-    "I love you more than I can ever say. ❤️"
+"You are my sweetest blessing.",
+
+"I love you more than I can ever say. ❤️"
 
 ];
 
 
 const reasonsContainer =
-    document.getElementById("reasons");
+document.getElementById(
+"reasons"
+);
 
 
-reasons.forEach((reason, index) => {
+reasons.forEach(
+(reason,index) => {
 
-    const div =
-        document.createElement("div");
 
-    div.className = "reason";
+const div =
+document.createElement(
+"div"
+);
 
-    div.innerHTML =
-        `<strong>${index + 1}.</strong> ${reason}`;
 
-    reasonsContainer.appendChild(div);
+div.className =
+"reason";
+
+
+div.innerHTML =
+
+`<strong>
+${index + 1}.
+</strong>
+${reason}`;
+
+
+reasonsContainer.appendChild(
+div
+);
 
 });
 
 
 /* =====================================================
-   FINAL SURPRISE
+   FINAL
 ===================================================== */
 
 function showFinal() {
 
-    showPage("finalPage");
+showPage(
+"finalPage"
+);
 
-    createConfetti();
 
-    createHearts(40);
+createConfetti();
+
+createHearts(50);
+
+createFireworks();
 
 }
 
@@ -1356,55 +2588,97 @@ function showFinal() {
 
 function createHearts(number) {
 
-    for (let i = 0; i < number; i++) {
 
-        setTimeout(() => {
-
-            const heart =
-                document.createElement("div");
-
-            heart.className = "floating-heart";
-
-            const hearts = [
-                "❤️",
-                "💕",
-                "💖",
-                "💗",
-                "💓",
-                "💘"
-            ];
-
-            heart.innerHTML =
-                hearts[
-                    Math.floor(Math.random() * hearts.length)
-                ];
+for (
+let i = 0;
+i < number;
+i++
+) {
 
 
-            heart.style.left =
-                Math.random() * 100 + "vw";
+setTimeout(
+function() {
 
 
-            heart.style.fontSize =
-                (15 + Math.random() * 30) + "px";
+const heart =
+document.createElement(
+"div"
+);
 
 
-            heart.style.animationDuration =
-                (4 + Math.random() * 5) + "s";
+heart.className =
+"floating-heart";
 
 
-            document.body.appendChild(heart);
+const hearts = [
+
+"❤️",
+
+"💕",
+
+"💖",
+
+"💗",
+
+"💓",
+
+"💘"
+
+];
 
 
-            setTimeout(() => {
+heart.innerHTML =
+hearts[
+Math.floor(
+Math.random() *
+hearts.length
+)
+];
 
-                heart.remove();
 
-            }, 9000);
+heart.style.left =
+Math.random() *
+100 + "vw";
 
 
-        }, i * 100);
+heart.style.fontSize =
 
-    }
+(
+15 +
+Math.random() *
+30
+) + "px";
+
+
+heart.style.animationDuration =
+
+(
+4 +
+Math.random() *
+5
+) + "s";
+
+
+document.body.appendChild(
+heart
+);
+
+
+setTimeout(
+function() {
+
+heart.remove();
+
+},
+9000
+);
+
+
+},
+i * 100
+);
+
+}
 
 }
 
@@ -1415,57 +2689,167 @@ function createHearts(number) {
 
 function createConfetti() {
 
-    const colors = [
-        "#ff4d6d",
-        "#ffbe0b",
-        "#8338ec",
-        "#3a86ff",
-        "#06d6a0",
-        "#ffffff"
-    ];
+
+const colors = [
+
+"#ff4d6d",
+
+"#ffbe0b",
+
+"#8338ec",
+
+"#3a86ff",
+
+"#06d6a0",
+
+"#ffffff"
+
+];
 
 
-    for (let i = 0; i < 100; i++) {
-
-        setTimeout(() => {
-
-            const piece =
-                document.createElement("div");
-
-            piece.className = "confetti";
+for (
+let i = 0;
+i < 100;
+i++
+) {
 
 
-            piece.style.left =
-                Math.random() * 100 + "vw";
+setTimeout(
+function() {
 
 
-            piece.style.background =
-                colors[
-                    Math.floor(Math.random() * colors.length)
-                ];
+const piece =
+document.createElement(
+"div"
+);
 
 
-            piece.style.transform =
-                `rotate(${Math.random() * 360}deg)`;
+piece.className =
+"confetti";
 
 
-            piece.style.animationDuration =
-                (2 + Math.random() * 3) + "s";
+piece.style.left =
+Math.random() *
+100 + "vw";
 
 
-            document.body.appendChild(piece);
+piece.style.background =
+colors[
+Math.floor(
+Math.random() *
+colors.length
+)
+];
 
 
-            setTimeout(() => {
+piece.style.transform =
 
-                piece.remove();
+`rotate(
+${Math.random() * 360}deg
+)`;
 
-            }, 5000);
+
+piece.style.animationDuration =
+
+(
+2 +
+Math.random() *
+3
+) + "s";
 
 
-        }, i * 25);
+document.body.appendChild(
+piece
+);
 
-    }
+
+setTimeout(
+function() {
+
+piece.remove();
+
+},
+5000
+);
+
+
+},
+i * 25
+);
+
+}
+
+}
+
+
+/* =====================================================
+   FIREWORKS
+===================================================== */
+
+function createFireworks() {
+
+
+for (
+let i = 0;
+i < 12;
+i++
+) {
+
+
+setTimeout(
+function() {
+
+
+const firework =
+document.createElement(
+"div"
+);
+
+
+firework.className =
+"firework";
+
+
+firework.innerHTML =
+"💖";
+
+
+firework.style.left =
+(
+10 +
+Math.random() *
+80
+) + "vw";
+
+
+firework.style.top =
+(
+10 +
+Math.random() *
+60
+) + "vh";
+
+
+document.body.appendChild(
+firework
+);
+
+
+setTimeout(
+function() {
+
+firework.remove();
+
+},
+2000
+);
+
+
+},
+i * 180
+);
+
+}
 
 }
 
@@ -1474,12 +2858,14 @@ function createConfetti() {
    BACKGROUND HEARTS
 ===================================================== */
 
-setInterval(() => {
+setInterval(
+function() {
 
-    createHearts(1);
+createHearts(1);
 
-}, 1800);
-
+},
+1800
+);
 
 </script>
 
