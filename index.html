@@ -1,314 +1,1484 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Happy Birthday My Love ❤️</title>
+    <title>For My Love ❤️</title>
 
     <style>
+
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Georgia, serif;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3, #8e44ad);
+            font-family: Georgia, 'Times New Roman', serif;
+            background:
+                radial-gradient(circle at top, #ff9a9e 0%, #fad0c4 35%, #a18cd1 100%);
             color: white;
-            text-align: center;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-
-        .heart {
-            font-size: 70px;
-            animation: heartbeat 1.2s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        h1 {
-            font-size: 48px;
-            margin: 20px 0;
-        }
-
-        h2 {
-            font-size: 32px;
-        }
-
-        .message {
-            font-size: 21px;
-            line-height: 1.8;
-            background: rgba(255,255,255,0.15);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .reasons {
-            text-align: left;
-            margin-top: 30px;
-        }
-
-        .reason {
-            background: rgba(255,255,255,0.15);
-            padding: 15px 20px;
-            margin: 10px 0;
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .reason:hover {
-            transform: scale(1.03);
-            background: rgba(255,255,255,0.25);
-        }
-
-        button {
-            border: none;
-            padding: 18px 30px;
-            margin-top: 30px;
-            border-radius: 50px;
-            font-size: 18px;
-            cursor: pointer;
-            background: white;
-            color: #e84393;
-            font-weight: bold;
-        }
-
-        button:hover {
-            transform: scale(1.08);
-        }
-
-        #finalMessage {
-            display: none;
-            margin-top: 40px;
-            font-size: 25px;
-            line-height: 1.8;
-            animation: fadeIn 2s;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
 
         .floating-heart {
             position: fixed;
             bottom: -50px;
             font-size: 25px;
-            animation: floatUp 6s linear infinite;
             pointer-events: none;
+            z-index: 1;
+            animation: floatHeart linear forwards;
         }
 
-        @keyframes floatUp {
+        @keyframes floatHeart {
             0% {
-                transform: translateY(0);
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
                 opacity: 1;
             }
 
             100% {
-                transform: translateY(-110vh);
+                transform: translateY(-110vh) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        footer {
-            margin-top: 50px;
+        /* =========================
+           GENERAL
+        ========================= */
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: auto;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            font-size: clamp(38px, 8vw, 70px);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(28px, 6vw, 45px);
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.8;
+            margin: 12px 0;
+        }
+
+        .small {
+            font-size: 15px;
+            opacity: 0.85;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        button {
+            border: none;
+            background: white;
+            color: #d63384;
+            padding: 15px 28px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        .pink-button {
+            background: #ff4d8d;
+            color: white;
+        }
+
+        .purple-button {
+            background: #8e44ad;
+            color: white;
+        }
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        #intro .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .big-heart {
+            font-size: 100px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.18);
+            }
+        }
+
+        .typing {
+            min-height: 70px;
+        }
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .progress {
+            width: 100%;
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+
+        /* =========================
+           CODE GAME
+        ========================= */
+
+        .code-input {
+            width: 220px;
+            padding: 15px;
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 10px;
+            border: none;
+            border-radius: 15px;
+            outline: none;
+            margin: 20px;
+        }
+
+        .message-box {
+            min-height: 50px;
+            margin-top: 15px;
             font-size: 18px;
         }
+
+        .success {
+            color: #fff;
+        }
+
+        .wrong {
+            color: #ffe0e0;
+        }
+
+        /* =========================
+           QUIZ
+        ========================= */
+
+        .quiz-question {
+            font-size: 25px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 90%;
+            max-width: 550px;
+            margin: 12px auto;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .quiz-option:hover {
+            background: white;
+            color: #d63384;
+        }
+
+        /* =========================
+           HEART GAME
+        ========================= */
+
+        #heartGame {
+            position: relative;
+            height: 450px;
+            margin-top: 20px;
+            border-radius: 25px;
+            background: rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+
+        .game-heart {
+            position: absolute;
+            font-size: 40px;
+            cursor: pointer;
+            user-select: none;
+            animation: pulseHeart 0.8s infinite alternate;
+        }
+
+        @keyframes pulseHeart {
+            from {
+                transform: scale(0.85);
+            }
+
+            to {
+                transform: scale(1.15);
+            }
+        }
+
+        .score {
+            font-size: 25px;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           MEMORY CARDS
+        ========================= */
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .memory-card {
+            min-height: 160px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.4s;
+            font-size: 18px;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.28);
+        }
+
+        /* =========================
+           REASONS
+        ========================= */
+
+        .reason {
+            background: rgba(255,255,255,0.15);
+            padding: 18px;
+            border-radius: 15px;
+            margin: 12px 0;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .reason:hover {
+            transform: translateX(8px);
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* =========================
+           FINAL
+        ========================= */
+
+        .final-heart {
+            font-size: 100px;
+            animation: heartbeat 1s infinite;
+        }
+
+        .final-message {
+            font-size: 23px;
+            line-height: 1.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* =========================
+           CONFETTI
+        ========================= */
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 20px;
+            top: -30px;
+            z-index: 999;
+            animation: confettiFall 4s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 40px 0;
+            }
+
+            .glass {
+                padding: 22px 16px;
+            }
+
+            p {
+                font-size: 17px;
+            }
+
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #heartGame {
+                height: 380px;
+            }
+
+            button {
+                font-size: 15px;
+                padding: 13px 22px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-<div class="container">
 
-    <div class="heart">❤️</div>
+<!-- =====================================================
+     PAGE 1 — INTRO
+===================================================== -->
 
-    <h1>Happy 25th Birthday!</h1>
+<section id="intro" class="page active">
 
-    <h2>My Beautiful Love 💕</h2>
+    <div class="container">
 
-    <div class="message">
+        <div class="big-heart">❤️</div>
 
-        <p>
-            Dear My Love,
-        </p>
+        <h1>Hey, My Love...</h1>
 
-        <p>
-            Today is a very special day because the most
-            beautiful person in my life was born. ❤️
-        </p>
+        <div class="glass">
 
-        <p>
-            Every moment with you feels like a blessing.
-            Your smile makes my world brighter,
-            your laugh is my favorite sound,
-            and your love makes my life complete.
-        </p>
+            <p class="typing" id="introText"></p>
 
-        <p>
-            I hope your 25th year brings you
-            everything your heart wishes for.
-        </p>
+            <button onclick="startSurprise()">
+                💕 Start My Surprise
+            </button>
 
-        <p>
-            You deserve all the happiness in the world.
-        </p>
-
-        <p>
-            I love you more than words can ever explain. ❤️
-        </p>
+        </div>
 
     </div>
 
-
-    <h2>25 Reasons Why I Love You ❤️</h2>
-
-    <div class="reasons">
-
-        <div class="reason">1. Your smile makes my world brighter.</div>
-        <div class="reason">2. Your laugh is my favorite sound.</div>
-        <div class="reason">3. You make ordinary days magical.</div>
-        <div class="reason">4. Your heart is beautiful and kind.</div>
-        <div class="reason">5. You make me feel safe and loved.</div>
-        <div class="reason">6. You are beautiful inside and out.</div>
-        <div class="reason">7. You make my difficult days easier.</div>
-        <div class="reason">8. You are my favorite person.</div>
-        <div class="reason">9. You inspire me to be better.</div>
-        <div class="reason">10. You are incredibly precious to me.</div>
-        <div class="reason">11. Your love makes my life beautiful.</div>
-        <div class="reason">12. You make my dreams feel possible.</div>
-        <div class="reason">13. You are my calm during every storm.</div>
-        <div class="reason">14. You make every moment special.</div>
-        <div class="reason">15. Your kindness makes you even more beautiful.</div>
-        <div class="reason">16. You bring happiness into my life.</div>
-        <div class="reason">17. Your love is my greatest treasure.</div>
-        <div class="reason">18. Being with you feels like home.</div>
-        <div class="reason">19. You will always be my favorite person.</div>
-        <div class="reason">20. You are the reason behind so many smiles.</div>
-        <div class="reason">21. You bring light into my life.</div>
-        <div class="reason">22. You are gorgeous, smart and unforgettable.</div>
-        <div class="reason">23. You make my future feel beautiful.</div>
-        <div class="reason">24. You are my sweetest blessing.</div>
-        <div class="reason">25. I love you more than words can say. ❤️</div>
-
-    </div>
+</section>
 
 
-    <button onclick="showSurprise()">
-        🎁 Open Your Final Surprise
-    </button>
+<!-- =====================================================
+     PAGE 2 — UNLOCK MY HEART
+===================================================== -->
 
+<section id="codePage" class="page">
 
-    <div id="finalMessage">
+    <div class="container">
 
-        <h2>💖 One More Thing... 💖</h2>
+        <div class="glass">
 
-        <p>
-            If I could give you one thing in this world,
-            I would give you the ability to see yourself
-            through my eyes.
-        </p>
+            <h2>🔐 Unlock My Heart</h2>
 
-        <p>
-            Then you would finally understand
-            how incredibly special you are to me.
-        </p>
+            <p>
+                Before you continue...
+            </p>
 
-        <p>
-            Thank you for being you.
-        </p>
+            <p>
+                You need to find the secret 4-digit code. ❤️
+            </p>
 
-        <p>
-            Thank you for being part of my life.
-        </p>
+            <p class="small">
+                Hint: How old are you today? 🎂
+            </p>
 
-        <p>
-            And most importantly...
-        </p>
+            <input
+                id="codeInput"
+                class="code-input"
+                maxlength="4"
+                type="tel"
+                placeholder="••••"
+            >
 
-        <h1>
-            I LOVE YOU ❤️
-        </h1>
+            <br>
 
-        <p>
-            Happy Birthday, my beautiful girl. 🎂💕
-        </p>
+            <button onclick="checkCode()">
+                🔓 Unlock
+            </button>
 
-        <p>
-            Forever yours,<br>
-            Your One and Only ❤️
-        </p>
+            <div id="codeMessage" class="message-box"></div>
+
+        </div>
 
     </div>
 
-    <footer>
-        Made with ❤️ especially for you.
-    </footer>
+</section>
 
-</div>
+
+<!-- =====================================================
+     PAGE 3 — QUIZ
+===================================================== -->
+
+<section id="quizPage" class="page">
+
+    <div class="container">
+
+        <div class="glass">
+
+            <h2>💕 How Well Do You Know Us?</h2>
+
+            <p>
+                Let's see how well you remember our little story. 😏
+            </p>
+
+            <div class="progress">
+                <div id="quizProgress" class="progress-bar"></div>
+            </div>
+
+            <div id="quizArea"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 4 — CATCH HEARTS
+===================================================== -->
+
+<section id="heartPage" class="page">
+
+    <div class="container">
+
+        <div class="glass">
+
+            <h2>❤️ Catch My Heart</h2>
+
+            <p>
+                Catch 10 hearts to continue!
+            </p>
+
+            <div class="score">
+                Hearts: <span id="score">0</span> / 10
+            </div>
+
+            <div id="heartGame"></div>
+
+            <div id="heartMessage"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 5 — MEMORIES
+===================================================== -->
+
+<section id="memoryPage" class="page">
+
+    <div class="container">
+
+        <div class="glass">
+
+            <h2>🌹 Choose a Door</h2>
+
+            <p>
+                Every part of our story is special.
+            </p>
+
+            <div class="memory-grid">
+
+                <div
+                    class="memory-card"
+                    onclick="showMemory('past')">
+
+                    🌹<br>
+                    Our Past
+
+                </div>
+
+                <div
+                    class="memory-card"
+                    onclick="showMemory('present')">
+
+                    ❤️<br>
+                    Our Present
+
+                </div>
+
+                <div
+                    class="memory-card"
+                    onclick="showMemory('future')">
+
+                    ✨<br>
+                    Our Future
+
+                </div>
+
+            </div>
+
+            <div id="memoryMessage" style="margin-top:30px;"></div>
+
+            <button
+                id="memoryContinue"
+                class="hidden"
+                onclick="showPage('reasonsPage')">
+
+                💖 Continue
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 6 — 25 REASONS
+===================================================== -->
+
+<section id="reasonsPage" class="page">
+
+    <div class="container">
+
+        <div class="glass">
+
+            <h2>💖 25 Reasons I Love You</h2>
+
+            <p>
+                I could give you a thousand reasons...
+                but here are 25 for your 25th birthday.
+            </p>
+
+            <div id="reasons"></div>
+
+            <button onclick="showFinal()">
+                🎁 Open My Final Message
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 7 — FINAL
+===================================================== -->
+
+<section id="finalPage" class="page">
+
+    <div class="container">
+
+        <div class="glass">
+
+            <div class="final-heart">
+                ❤️
+            </div>
+
+            <h1>YOU WON! 🎉</h1>
+
+            <h2>But there was never really a prize...</h2>
+
+            <div class="final-message">
+
+                <p>
+                    Because the truth is...
+                </p>
+
+                <p>
+                    <strong>
+                        YOU ARE MY FAVORITE PART OF EVERY DAY.
+                    </strong>
+                </p>
+
+                <p>
+                    If I could give you one thing in this world,
+                    I would give you the ability to see yourself
+                    through my eyes.
+                </p>
+
+                <p>
+                    Then you would understand just how
+                    incredibly beautiful and special you are to me.
+                </p>
+
+                <p>
+                    Thank you for coming into my life.
+                </p>
+
+                <p>
+                    Thank you for every smile,
+                    every laugh,
+                    every memory,
+                    and every moment.
+                </p>
+
+                <p>
+                    I hope your 25th year is filled with
+                    happiness, love, success and beautiful memories.
+                </p>
+
+                <p>
+                    And I hope I get to be beside you
+                    for many, many more birthdays. ❤️
+                </p>
+
+                <br>
+
+                <h1>
+                    HAPPY 25TH BIRTHDAY 🎂
+                </h1>
+
+                <h2>
+                    I LOVE YOU ❤️
+                </h2>
+
+                <p>
+                    Forever yours,<br>
+                    <strong>Your One and Only ❤️</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 
 <script>
 
-    function showSurprise() {
+/* =====================================================
+   PERSONAL INFORMATION
+=====================================================
 
-        document.getElementById("finalMessage").style.display = "block";
+   CHANGE THESE!
+*/
 
-        for (let i = 0; i < 30; i++) {
+const loverName = "My Love";
+const yourName = "Your One and Only";
+const birthdayAge = 25;
 
-            setTimeout(() => {
 
-                const heart = document.createElement("div");
+/* =====================================================
+   INTRO MESSAGE
+===================================================== */
 
-                heart.className = "floating-heart";
+const introMessage =
+    "I made something special for you... " +
+    "It's not just a birthday message. " +
+    "It's a little journey through my heart. ❤️";
 
-                heart.innerHTML = "❤️";
 
-                heart.style.left =
-                    Math.random() * 100 + "vw";
+let introIndex = 0;
 
-                heart.style.animationDuration =
-                    (3 + Math.random() * 4) + "s";
 
-                document.body.appendChild(heart);
+function typeIntro() {
 
-                setTimeout(() => {
-                    heart.remove();
-                }, 7000);
+    if (introIndex < introMessage.length) {
 
-            }, i * 100);
+        document.getElementById("introText").innerHTML +=
+            introMessage.charAt(introIndex);
+
+        introIndex++;
+
+        setTimeout(typeIntro, 40);
+    }
+}
+
+
+typeIntro();
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    document.getElementById(pageId)
+        .classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+function startSurprise() {
+
+    createHearts(15);
+
+    showPage("codePage");
+
+}
+
+
+/* =====================================================
+   UNLOCK CODE
+===================================================== */
+
+function checkCode() {
+
+    const input =
+        document.getElementById("codeInput").value;
+
+    const message =
+        document.getElementById("codeMessage");
+
+
+    if (input === birthdayAge.toString()) {
+
+        message.innerHTML =
+            "🔓 <strong>Unlocked!</strong><br>" +
+            "You found the key to my heart. ❤️";
+
+        message.className = "message-box success";
+
+        createConfetti();
+
+        setTimeout(() => {
+
+            showPage("quizPage");
+
+            startQuiz();
+
+        }, 1800);
+
+
+    } else {
+
+        message.innerHTML =
+            "💕 Hmm... that's not it. Try again!";
+
+        message.className = "message-box wrong";
+
+    }
+
+}
+
+
+/* =====================================================
+   QUIZ
+=====================================================
+
+   CHANGE THE QUESTIONS AND ANSWERS HERE.
+*/
+
+const questions = [
+
+    {
+        question: "What do I love most about you?",
+        options: [
+            "Your smile ❤️",
+            "Your kindness 💕",
+            "Everything about you 😍",
+            "All of the above ❤️"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "What do I want most for your birthday?",
+        options: [
+            "Money",
+            "A new phone",
+            "For you to be happy ❤️",
+            "A vacation"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What are you to me?",
+        options: [
+            "My friend",
+            "My favorite person ❤️",
+            "My teammate",
+            "My neighbor"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "How long do I want to keep you in my life?",
+        options: [
+            "One year",
+            "Five years",
+            "Until tomorrow",
+            "Forever ❤️"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Who is the luckiest person in the world?",
+        options: [
+            "Me ❤️",
+            "You",
+            "Both of us",
+            "Everyone who knows you"
+        ],
+        answer: 0
+    }
+
+];
+
+
+let currentQuestion = 0;
+let quizScore = 0;
+
+
+function startQuiz() {
+
+    currentQuestion = 0;
+    quizScore = 0;
+
+    showQuestion();
+
+}
+
+
+function showQuestion() {
+
+    const area =
+        document.getElementById("quizArea");
+
+    const question =
+        questions[currentQuestion];
+
+
+    document.getElementById("quizProgress")
+        .style.width =
+        ((currentQuestion / questions.length) * 100) + "%";
+
+
+    let html = "";
+
+    html += `
+        <div class="quiz-question">
+            ${question.question}
+        </div>
+    `;
+
+
+    question.options.forEach((option, index) => {
+
+        html += `
+            <button
+                class="quiz-option"
+                onclick="answerQuiz(${index})">
+
+                ${option}
+
+            </button>
+        `;
+
+    });
+
+
+    area.innerHTML = html;
+
+}
+
+
+function answerQuiz(selected) {
+
+    const correct =
+        questions[currentQuestion].answer;
+
+
+    if (selected === correct) {
+
+        quizScore++;
+
+        createHearts(5);
+
+        alert("❤️ Correct!");
+
+
+    } else {
+
+        alert(
+            "💕 Nice try! But I still love you."
+        );
+
+    }
+
+
+    currentQuestion++;
+
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        document.getElementById("quizProgress")
+            .style.width = "100%";
+
+
+        document.getElementById("quizArea")
+            .innerHTML = `
+
+                <h2>🎉 Quiz Complete!</h2>
+
+                <p>
+                    You got
+                    <strong>
+                        ${quizScore} / ${questions.length}
+                    </strong>
+                    correct!
+                </p>
+
+                <p>
+                    But honestly...
+                    you get 100/100 for being you. ❤️
+                </p>
+
+                <button onclick="startHeartGame()">
+                    ❤️ Next Game
+                </button>
+
+            `;
+
+    }
+
+}
+
+
+/* =====================================================
+   CATCH THE HEART GAME
+===================================================== */
+
+let heartScore = 0;
+let heartTimer;
+
+
+function startHeartGame() {
+
+    showPage("heartPage");
+
+    heartScore = 0;
+
+    document.getElementById("score")
+        .innerText = "0";
+
+    document.getElementById("heartMessage")
+        .innerHTML = "";
+
+    startHeart();
+
+}
+
+
+function startHeart() {
+
+    const game =
+        document.getElementById("heartGame");
+
+
+    game.innerHTML = "";
+
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "game-heart";
+
+    heart.innerHTML = "❤️";
+
+
+    const maxX =
+        game.clientWidth - 60;
+
+    const maxY =
+        game.clientHeight - 60;
+
+
+    heart.style.left =
+        Math.random() * maxX + "px";
+
+    heart.style.top =
+        Math.random() * maxY + "px";
+
+
+    heart.onclick = function() {
+
+        heartScore++;
+
+        document.getElementById("score")
+            .innerText = heartScore;
+
+
+        heart.remove();
+
+
+        createHearts(2);
+
+
+        if (heartScore >= 10) {
+
+            clearTimeout(heartTimer);
+
+            game.innerHTML = "";
+
+            document.getElementById("heartMessage")
+                .innerHTML = `
+
+                    <h2>💖 You caught my heart!</h2>
+
+                    <p>
+                        Actually...
+                        you already had it. ❤️
+                    </p>
+
+                    <button onclick="showPage('memoryPage')">
+                        🌹 Continue
+                    </button>
+
+                `;
+
+            createConfetti();
+
+        } else {
+
+            startHeart();
 
         }
 
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth"
-        });
+    };
+
+
+    game.appendChild(heart);
+
+
+    heartTimer = setTimeout(() => {
+
+        if (game.contains(heart)) {
+
+            heart.remove();
+
+            startHeart();
+
+        }
+
+    }, 1500);
+
+}
+
+
+/* =====================================================
+   MEMORY DOORS
+===================================================== */
+
+let memoryChosen = false;
+
+
+function showMemory(type) {
+
+    const message =
+        document.getElementById("memoryMessage");
+
+
+    memoryChosen = true;
+
+
+    if (type === "past") {
+
+        message.innerHTML = `
+
+            <h3>🌹 Our Past</h3>
+
+            <p>
+                Every memory we've created together
+                is something I would never trade for
+                anything in the world.
+            </p>
+
+            <p>
+                From the smallest moments to the biggest
+                adventures, you've made my life more beautiful.
+            </p>
+
+        `;
+
     }
+
+
+    if (type === "present") {
+
+        message.innerHTML = `
+
+            <h3>❤️ Our Present</h3>
+
+            <p>
+                Right now, this moment,
+                I'm just grateful that you're in my life.
+            </p>
+
+            <p>
+                You make today worth celebrating.
+                And I hope you know how loved you are.
+            </p>
+
+        `;
+
+    }
+
+
+    if (type === "future") {
+
+        message.innerHTML = `
+
+            <h3>✨ Our Future</h3>
+
+            <p>
+                I don't know exactly what the future holds...
+            </p>
+
+            <p>
+                But I know one thing:
+                I want more laughs, more adventures,
+                more memories and more birthdays with you. ❤️
+            </p>
+
+        `;
+
+    }
+
+
+    document.getElementById("memoryContinue")
+        .classList.remove("hidden");
+
+}
+
+
+/* =====================================================
+   25 REASONS
+===================================================== */
+
+const reasons = [
+
+    "Your smile makes my world brighter. ❤️",
+
+    "Your laugh is my favorite sound.",
+
+    "You make ordinary days feel magical.",
+
+    "Your heart is beautiful and kind.",
+
+    "You make me feel safe and loved.",
+
+    "You are beautiful inside and out.",
+
+    "You make difficult days easier.",
+
+    "You are my favorite person.",
+
+    "You inspire me to become better.",
+
+    "You are more precious than words can describe.",
+
+    "Your love makes my life beautiful.",
+
+    "You make my dreams feel possible.",
+
+    "You are my calm during every storm.",
+
+    "You make every moment special.",
+
+    "Your kindness makes you even more beautiful.",
+
+    "You bring so much happiness into my life.",
+
+    "Your love is my greatest treasure.",
+
+    "Being with you feels like coming home.",
+
+    "You will always be one of my favorite people.",
+
+    "You are the reason behind so many smiles.",
+
+    "You bring love, peace and light into my life.",
+
+    "You are gorgeous, smart and unforgettable.",
+
+    "You make my future feel beautiful.",
+
+    "You are my sweetest blessing.",
+
+    "I love you more than I can ever say. ❤️"
+
+];
+
+
+const reasonsContainer =
+    document.getElementById("reasons");
+
+
+reasons.forEach((reason, index) => {
+
+    const div =
+        document.createElement("div");
+
+    div.className = "reason";
+
+    div.innerHTML =
+        `<strong>${index + 1}.</strong> ${reason}`;
+
+    reasonsContainer.appendChild(div);
+
+});
+
+
+/* =====================================================
+   FINAL SURPRISE
+===================================================== */
+
+function showFinal() {
+
+    showPage("finalPage");
+
+    createConfetti();
+
+    createHearts(40);
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createHearts(number) {
+
+    for (let i = 0; i < number; i++) {
+
+        setTimeout(() => {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            const hearts = [
+                "❤️",
+                "💕",
+                "💖",
+                "💗",
+                "💓",
+                "💘"
+            ];
+
+            heart.innerHTML =
+                hearts[
+                    Math.floor(Math.random() * hearts.length)
+                ];
+
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+
+            heart.style.fontSize =
+                (15 + Math.random() * 30) + "px";
+
+
+            heart.style.animationDuration =
+                (4 + Math.random() * 5) + "s";
+
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 9000);
+
+
+        }, i * 100);
+
+    }
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function createConfetti() {
+
+    const colors = [
+        "#ff4d6d",
+        "#ffbe0b",
+        "#8338ec",
+        "#3a86ff",
+        "#06d6a0",
+        "#ffffff"
+    ];
+
+
+    for (let i = 0; i < 100; i++) {
+
+        setTimeout(() => {
+
+            const piece =
+                document.createElement("div");
+
+            piece.className = "confetti";
+
+
+            piece.style.left =
+                Math.random() * 100 + "vw";
+
+
+            piece.style.background =
+                colors[
+                    Math.floor(Math.random() * colors.length)
+                ];
+
+
+            piece.style.transform =
+                `rotate(${Math.random() * 360}deg)`;
+
+
+            piece.style.animationDuration =
+                (2 + Math.random() * 3) + "s";
+
+
+            document.body.appendChild(piece);
+
+
+            setTimeout(() => {
+
+                piece.remove();
+
+            }, 5000);
+
+
+        }, i * 25);
+
+    }
+
+}
+
+
+/* =====================================================
+   BACKGROUND HEARTS
+===================================================== */
+
+setInterval(() => {
+
+    createHearts(1);
+
+}, 1800);
+
 
 </script>
 
